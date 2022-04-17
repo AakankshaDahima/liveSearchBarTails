@@ -15,7 +15,7 @@ Live SearchDefault in react application
 
 ## Installation
 
-1. Clone this repo in `git clone https://github.com/imranhsayed/react-workshop`
+1. Clone this repo in `git clone https://github.com/AakankshaDahima/liveSearchBarTails.git`
 
 2. Run `npm install`
 
