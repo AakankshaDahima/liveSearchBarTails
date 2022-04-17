@@ -2,7 +2,7 @@
 
 :fire: This is a workshop for learning how to build React Applications.
 
-## :video_camera: Live Search Demo
+## :video_camera: Live SearchDefault Demo
 
 ## Before you Start
 I've branched the repo for individual topics.
@@ -11,7 +11,7 @@ To checkout individual branch run: `git checkout <branch name>`. From there on y
 
 ## Branch Name: live-search-react
 ## Branch Description:
-Live Search in react application
+Live SearchDefault in react application
 
 ## Installation
 
@@ -23,11 +23,39 @@ Live Search in react application
 
 4. Run `npm run dev`
 
+## Run API Service
+
+1. Go to new terminal, Run `python ./AkanshaAPI/api.py`
+
+If error `ImportError: No module named flask` appears, then Run:
+
+    1. Run `virtualenv flask`
+
+    2. Run `cd flask`
+
+    3. Run `source bin/activate`
+
+    4. Run `pip install flask`
+
+    5. Run `pip install flask_cors`
+
+    5. Run `cd ..`
+
+    6. Run `python AkanshaAPI/api.py`
+
+    
+
 ## Version used
 
 1. npm `8.5.0`
 
 2. node `v16.14.2`
+
+3. Python `2.7.16` or `3.9.5`
+
+4. Flask `1.1.2`
+
+5. pip `22.0.4`
 
 ## Useful Links
 1. [Blog Link](https://codeytek.com/live-search-search-react-live-search-in-react-axios-autocomplete-pagination/)

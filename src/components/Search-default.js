@@ -1,10 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import '../Search.css';
 import axios from 'axios';
 import Loader from '../loader.gif';
 import PageNavigation from './PageNavigation';
 
-class Search extends React.Component {
+class SearchDefault extends React.Component {
 
 	constructor( props ) {
 		super( props );
@@ -41,56 +41,36 @@ class Search extends React.Component {
 	 * Also cancels the previous query before making the new one.
 	 *
 	 * @param {int} updatedPageNo Updated Page No.
-	 * @param {String} query Search Query.
+	 * @param {String} query SearchDefault Query.
 	 *
 	 */
 	fetchSearchResults = ( updatedPageNo = '', query ) => {
 		const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
-		// const searchUrl = `https://pixabay.com/api/?key=25991533-b2cebdcf6d9ac250f076a26ce&q=${query}${pageNumber}`;
-		const searchUrl = `http://127.0.0.1:5000/citynames`;
+		const searchUrl = `https://pixabay.com/api/?key=PASTE_YOUR_API_KEY_HERE&q=${query}${pageNumber}`;
 
-		console.log("updated page: ", updatedPageNo);
 		if( this.cancel ) {
 			this.cancel.cancel();
 		}
+
 		this.cancel = axios.CancelToken.source();
 
-		var data = JSON.stringify({
-			"text_query": query
-		});
-		var config = {
-			// cancelToken: this.cancel.token
-			method: 'post',
-			url: searchUrl,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data : data
-		};
-		// console.log("-1----- ", this.state);
-		axios(config)
+		axios.get( searchUrl, {
+			cancelToken: this.cancel.token
+		} )
 			.then( res => {
-				console.log(JSON.stringify(res.data));
-				// console.log("-2----- ", this.state);
-
-				const total = res.data.total_city;
-				// const totalPagesCount = this.getPageCount( total, 20 );
-				// console.log(res.data.cities.length, " <-length");
-				const resultNotFoundMsg = !(res.data.cities.length)
+				const total = res.data.total;
+				const totalPagesCount = this.getPageCount( total, 20 );
+				const resultNotFoundMsg = ! res.data.hits.length
 										? 'There are no more search results. Please try a new search'
 										: '';
-				// console.log("resultNotFoundMsg-> ", resultNotFoundMsg);
-				console.log("-3----- ", total);
-
 				this.setState( {
-					results: res.data.cities,
+					results: res.data.hits,
 					message: resultNotFoundMsg,
 					totalResults: total,
-					// totalPages: totalPagesCount,
+					totalPages: totalPagesCount,
 					currentPageNo: updatedPageNo,
 					loading: false
 				} )
-				// console.log(this.state, " <-state2");
 			} )
 			.catch( error => {
 				if ( axios.isCancel(error) || error ) {
@@ -134,20 +114,20 @@ class Search extends React.Component {
 	renderSearchResults = () => {
 		const { results } = this.state;
 
-		console.log("results----> ", results);
 		if ( Object.keys( results ).length && results.length ) {
 			return (
 				<div className="results-container">
-						{ results.map( result => {
-							return (
-								<a className="result-item">
-									{/*<div className="image-wrapper">*/}
-										{/*<img className="image" src={ result.previewURL } alt={`${result.username} image`}/>*/}
-										<h6 className="image-username">{result}</h6>
-									{/*</div>*/}
-								</a>
-							)
-						} ) }
+					{ results.map( result => {
+						return (
+							<a key={ result.id } href={ result.previewURL } className="result-item">
+								<h6 className="image-username">{result.user}</h6>
+								<div className="image-wrapper">
+									<img className="image" src={ result.previewURL } alt={`${result.username} image`}/>
+								</div>
+							</a>
+						)
+					} ) }
+
 				</div>
 			)
 		}
@@ -162,15 +142,15 @@ class Search extends React.Component {
 		return (
 			<div className="container">
 			{/*	Heading*/}
-			<h2 className="heading">Live Search: React Application</h2>
-			{/* Search Input*/}
+			<h2 className="heading">Live SearchDefault: React Application</h2>
+			{/* SearchDefault Input*/}
 			<label className="search-label" htmlFor="search-input">
 				<input
 					type="text"
 					name="query"
 					value={ query }
 					id="search-input"
-					placeholder="Search..."
+					placeholder="SearchDefault..."
 					onChange={this.handleOnInputChange}
 				/>
 				<i className="fa fa-search search-icon" aria-hidden="true"/>
@@ -208,4 +188,4 @@ class Search extends React.Component {
 	}
 }
 
-export default Search
+export default SearchDefault

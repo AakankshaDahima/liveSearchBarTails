@@ -1,0 +1,38 @@
+[
+  {
+    "city_name": "Mumbai",
+    "postcode": "121003"
+  },
+  {
+    "city_name": "Delhi",
+    "postcode": "121002"
+  },
+  {
+    "city_name": "Pune",
+    "postcode": "121006"
+  },
+  {
+    "city_name": "suriname",
+    "postcode": "sr121006"
+  },
+  {
+    "city_name": "Surat",
+    "postcode": "121007"
+  },
+  {
+    "city_name": "Indore",
+    "postcode": "121009"
+  },
+  {
+    "city_name": "Kolkata",
+    "postcode": "121001"
+  },
+  {
+    "city_name": "Agra",
+    "postcode": "121008"
+  },
+  {
+    "city_name": "Kota",
+    "postcode": "121000"
+  }
+]
