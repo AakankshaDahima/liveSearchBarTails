@@ -25,9 +25,8 @@ Live SearchDefault in react application
 
 ## Run API Service
 
-1. Go to new terminal, Run `python ./AkanshaAPI/api.py`
+1. Go to new terminal, Go to `AkanshaAPI` directory
 
-If error `ImportError: No module named flask` appears, then Run:
 
     1. Run `virtualenv flask`
 
@@ -35,15 +34,11 @@ If error `ImportError: No module named flask` appears, then Run:
 
     3. Run `source bin/activate`
 
-    4. Run `pip install flask`
+    If error `ImportError: No module named flask` or `flask_cors` appears, then Run:
+        i.  Run `pip install flask`
+        ii. Run `pip install flask_cors`
 
-    5. Run `pip install flask_cors`
-
-    5. Run `cd ..`
-
-    6. Run `python AkanshaAPI/api.py`
-
-    
+    4. Run `python AkanshaAPI/api.py`
 
 ## Version used
 
@@ -56,6 +51,8 @@ If error `ImportError: No module named flask` appears, then Run:
 4. Flask `1.1.2`
 
 5. pip `22.0.4`
+
+6. Werkzeug `2.0.3`
 
 ## Useful Links
 1. [Blog Link](https://codeytek.com/live-search-search-react-live-search-in-react-axios-autocomplete-pagination/)
